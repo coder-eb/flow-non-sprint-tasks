@@ -7,30 +7,28 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 def initialize_driver():
-    # options = webdriver.ChromeOptions()
-    # options.add_experimental_option('excludeSwitches', ['enable-logging'])
     return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 def main():
     driver = initialize_driver()
     url = "https://www.flipkart.com/"
-    url = "https://www.amazon.in/"
-    #opening link in the browser
+    # url = "https://www.amazon.in/"
     driver.get(url)
     # submit_button = driver.find_element(By.XPATH , "//input[@type='submit']")
-    submit_button = driver.find_element(By.ID , "nav-search-submit-button")
-    submit_button.click()
-    
-    # try:
-    #     submit_button = WebDriverWait(driver, 30).until(
-    #         EC.presence_of_element_located((By.XPATH, "//input[@type='submit']"))
-    #     )
-    #     submit_button.click()
+    # submit_button = driver.find_element(By.ID , "nav-search-submit-button")
 
-    # finally:
-    #     driver.quit()
+    try:
+        # submit_button = WebDriverWait(driver, 30).until(
+        #     EC.presence_of_element_located((By.XPATH, "//input[@type='submit']"))
+        # )
 
-    sleep(100)
+        submit_button = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "_2KpZ6l _2doB4z"))
+        )
+        submit_button.click()
+
+    finally:
+        driver.quit()
 
 if __name__ == '__main__':
     main()
