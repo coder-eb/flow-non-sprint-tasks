@@ -1,11 +1,9 @@
-import os
 from time import sleep
 import undetected_chromedriver.v2 as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from dotenv.main import load_dotenv
 from helpers import login_to_google
 
 def initialize_driver():
@@ -40,5 +38,4 @@ def main():
     sleep(20)
 
 if __name__ == '__main__':
-    load_dotenv()
     main()
