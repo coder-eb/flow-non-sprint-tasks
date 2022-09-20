@@ -14,7 +14,10 @@ def create_firebase_project(driver):
     
     url = "https://console.firebase.google.com/"
     driver.get(url)
-    WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, '//*[contains(@class,"new-project-button")]'))).click()
+    try:
+        WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.XPATH, '//*[contains(@class,"new-project-button")]'))).click()
+    except TimeoutException:
+        WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[contains(@class,"create-project")]/button'))).click()    
     # Project Creation Page 1
     project_name = driver.find_element(By.ID, 'projectName')
     project_name.send_keys('selenium-demo')
